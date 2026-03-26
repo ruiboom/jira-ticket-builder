@@ -1,3 +1,20 @@
+export function summariseFeedbackPrompt(
+  entries: { text: string; timestamp: string }[]
+): string {
+  const feedbackBlock = entries
+    .map((e, i) => `[${i + 1}] (${e.timestamp}): ${e.text}`)
+    .join("\n");
+
+  return `You are an analyst reviewing user feedback for a Jira ticket builder tool. Summarise the following ${entries.length} feedback entries into a concise report. Group by theme, highlight the most common requests or complaints, and note any trends over time.
+
+Feedback entries:
+---
+${feedbackBlock}
+---
+
+Provide a clear, structured summary with sections for key themes, frequency of mentions, and actionable recommendations.`;
+}
+
 function contextBlock(context: string, team: string): string {
   const parts: string[] = [];
   if (context.trim()) {

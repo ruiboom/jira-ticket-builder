@@ -55,6 +55,12 @@ export interface Question {
   category: string;
 }
 
+export interface FeedbackEntry {
+  id: string;
+  text: string;
+  timestamp: string; // ISO 8601
+}
+
 export type AppStep = "paste" | "questions" | "canvas" | "export";
 
 export interface AppState {
